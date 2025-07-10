@@ -40,8 +40,8 @@ const Login = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: "test@example.com",
-          password: "yourpassword",
+          email: email,
+          password: password,
         }),
       });
 
@@ -53,6 +53,9 @@ const Login = () => {
           password: "Invalid email or password",
         });
       } else {
+        // Store user data and token
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('user', JSON.stringify(result.user));
         navigate("/Dashboard");
       }
     } catch (error) {
